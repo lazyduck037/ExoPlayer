@@ -682,7 +682,7 @@ public final class HlsPlaylistParser implements ParsingLoadable.Parser<HlsPlayli
     @Nullable DrmInitData cachedDrmInitData = null;
 
     String line;
-    while (iterator.hasNext()) {
+     while (iterator.hasNext()) {
       line = iterator.next();
 
       if (line.startsWith(TAG_PREFIX)) {

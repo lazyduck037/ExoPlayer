@@ -421,6 +421,7 @@ public abstract class BaseRenderer implements Renderer, RendererCapabilities {
    */
   protected final @ReadDataResult int readSource(
       FormatHolder formatHolder, DecoderInputBuffer buffer, @ReadFlags int readFlags) {
+    //fill input buffer
     @ReadDataResult
     int result = Assertions.checkNotNull(stream).readData(formatHolder, buffer, readFlags);
     if (result == C.RESULT_BUFFER_READ) {

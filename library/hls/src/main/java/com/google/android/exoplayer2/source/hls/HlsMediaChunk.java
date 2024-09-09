@@ -492,6 +492,7 @@ import org.checkerframework.checker.nullness.qual.RequiresNonNull;
   private DefaultExtractorInput prepareExtraction(
       DataSource dataSource, DataSpec dataSpec, boolean initializeTimestampAdjuster)
       throws IOException {
+    //koi cho nay ne load chunk
     long bytesToRead = dataSource.open(dataSpec);
     if (initializeTimestampAdjuster) {
       try {

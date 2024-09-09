@@ -865,6 +865,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
         renderer.start();
       }
     }
+
   }
 
   private void stopRenderers() throws ExoPlaybackException {
@@ -3081,3 +3082,4 @@ import java.util.concurrent.atomic.AtomicBoolean;
     }
   }
 }
+

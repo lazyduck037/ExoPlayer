@@ -298,6 +298,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
   private final boolean enableDecoderFallback;
   private final float assumedMinimumCodecOperatingRate;
   private final DecoderInputBuffer noDataBuffer;
+  //buffer decode
   private final DecoderInputBuffer buffer;
   private final DecoderInputBuffer bypassSampleBuffer;
   private final BatchBuffer bypassBatchBuffer;
@@ -387,6 +388,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
     this.enableDecoderFallback = enableDecoderFallback;
     this.assumedMinimumCodecOperatingRate = assumedMinimumCodecOperatingRate;
     noDataBuffer = DecoderInputBuffer.newNoDataInstance();
+    //buffer decode
     buffer = new DecoderInputBuffer(DecoderInputBuffer.BUFFER_REPLACEMENT_MODE_DISABLED);
     bypassSampleBuffer = new DecoderInputBuffer(DecoderInputBuffer.BUFFER_REPLACEMENT_MODE_DIRECT);
     bypassBatchBuffer = new BatchBuffer();
@@ -791,7 +793,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
         TraceUtil.beginSection("drainAndFeed");
         while (drainOutputBuffer(positionUs, elapsedRealtimeUs)
             && shouldContinueRendering(renderStartTimeMs)) {}
-        while (feedInputBuffer() && shouldContinueRendering(renderStartTimeMs)) {}
+        while (feedInputBuffer() && shouldContinueRendering(renderStartTimeMs)) { }
         TraceUtil.endSection();
       } else {
         decoderCounters.skippedInputBufferCount += skipSource(positionUs);
@@ -1233,7 +1235,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
 
     @SampleStream.ReadDataResult int result;
     try {
-      result = readSource(formatHolder, buffer, /* readFlags= */ 0);
+      result = readSource(formatHolder, buffer, /* readFlags= */ 0); 
     } catch (InsufficientCapacityException e) {
       onCodecError(e);
       // Skip the sample that's too large by reading it without its data. Then flush the codec so
@@ -1358,6 +1360,7 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
         codec.queueSecureInputBuffer(
             inputIndex, /* offset= */ 0, buffer.cryptoInfo, presentationTimeUs, /* flags= */ 0);
       } else {
+
         codec.queueInputBuffer(
             inputIndex, /* offset= */ 0, buffer.data.limit(), presentationTimeUs, /* flags= */ 0);
       }
@@ -2492,3 +2495,4 @@ public abstract class MediaCodecRenderer extends BaseRenderer {
     }
   }
 }
+

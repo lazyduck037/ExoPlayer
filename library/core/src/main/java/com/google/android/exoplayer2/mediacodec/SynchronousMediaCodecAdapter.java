@@ -206,3 +206,4 @@ public final class SynchronousMediaCodecAdapter implements MediaCodecAdapter {
     return codec.getMetrics();
   }
 }
+

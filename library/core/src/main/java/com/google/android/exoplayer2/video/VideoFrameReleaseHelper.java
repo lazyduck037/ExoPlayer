@@ -648,3 +648,4 @@ public final class VideoFrameReleaseHelper {
     }
   }
 }
+

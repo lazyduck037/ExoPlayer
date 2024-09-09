@@ -17,6 +17,7 @@ package com.google.android.exoplayer2.surfacedemo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.SurfaceTexture;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
